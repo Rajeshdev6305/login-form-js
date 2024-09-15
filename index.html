@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    form {
+      display: flex;
+      flex-direction: column;
+      width: 30vw;
+      margin-left: 400px;
+      margin-top: 200px;
+      gap: 10px;
+      border: 2px solid rgb(247, 37, 37);
+      border-radius: 20px;
+      padding: 30px;
+      background-color: aqua;
+    }
+    #submit {
+      margin-left: 150px;
+      border-radius: 5px;
+      padding: 5px;
+      border-color: gray;
+    }
+    #submit:hover {
+      background-color: orange;
+      color: aliceblue;
+    }
+  </style>
+  <body>
+    <form id="form1">
+      <input
+        type="text"
+        id="ip1"
+        style="border-radius: 10px; padding: 5px"
+        placeholder="username"
+      />
+      <span id="sp1" style="display: none">must fill this field</span>
+      <span id="spu" style="display: none"
+        >username should not contain numerical</span
+      >
+      <input
+        type="text"
+        id="ip2"
+        style="border-radius: 10px; padding: 5px"
+        placeholder="Enter password"
+      />
+      <span id="spp" style="display: none"
+        >password should match required criteria</span
+      >
+      <span id="sp2" style="display: none">must fill this field</span>
+      <input
+        type="text"
+        id="ip3"
+        style="border-radius: 10px; padding: 5px"
+        placeholder="Enter Mobile Number"
+      />
+      <span id="spm" style="display: none"
+        >mobile Number should contain only 10 digits</span
+      >
+      <span id="sp3" style="display: none">must fill this field</span>
+      <input
+        type="text"
+        id="ip4"
+        style="border-radius: 10px; padding: 5px"
+        placeholder="ROLL NO"
+      />
+      <span id="spr" style="display: none"
+        >Roll number must contain charecter and numerical</span
+      >
+      <span id="sp4" style="display: none">must fill this field</span>
+      <input type="submit" id="submit" style="width: 100px" />
+    </form>
+    <script>
+      let form = document.getElementById("form1");
+      let ip1 = document.getElementById("ip1");
+      let ip2 = document.getElementById("ip2");
+      let ip3 = document.getElementById("ip3");
+      let ip4 = document.getElementById("ip4");
+      let sp1 = document.getElementById("sp1");
+      let sp2 = document.getElementById("sp2");
+      let sp3 = document.getElementById("sp3");
+      let sp4 = document.getElementById("sp4");
+      let OnlyAlphabates = /[a-z].{4,16}/;
+      let pswd = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$%&*!]).{8,16}$/;
+      let mobile = /[0-9]/;
+      let rnm = /[0-9]{2}[a-z]{1}$/;
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (
+          ip1.value.length == 0 &&
+          ip2.value.length == 0 &&
+          ip3.value.length == 0 &&
+          ip4.value.length == 0
+        ) {
+          sp1.style.display = "block";
+          sp2.style.display = "block";
+          sp3.style.display = "block";
+          sp4.style.display = "block";
+          sp1.style.color = "red";
+          sp2.style.color = "red";
+          sp3.style.color = "red";
+          sp4.style.color = "red";
+          ip1.style.border = "2px solid red";
+          ip2.style.border = "2px solid red";
+          ip3.style.border = "2px solid red";
+          ip4.style.border = "2px solid red";
+        } else if (ip1.value.length == 0) {
+          sp1.style.display = "block";
+          sp1.style.color = "red";
+          ip1.style.border = "2px solid red";
+        } else if (!OnlyAlphabates.test(ip1.value)) {
+          spu.style.display = "block";
+          spu.style.color = "red";
+          ip1.style.border = "2px solid red";
+        } else if (ip2.value.length == 0) {
+          sp2.style.display = "block";
+          sp2.style.color = "red";
+          ip2.style.border = "2px solid red";
+        } else if (!pswd.test(ip2.value)) {
+          spp.style.display = "block";
+          spp.style.color = "red";
+          ip2.style.border = "2px solid red";
+        } else if (ip3.value.length == 0) {
+          sp3.style.display = "block";
+          sp3.style.color = "red";
+          ip3.style.border = "2px solid red";
+        } else if (!mobile.test(ip3.value)) {
+          spm.style.display = "block";
+          spm.style.color = "red";
+          ip3.style.border = "2px solid red";
+        } else if (ip4.value.length == 0) {
+          sp4.style.display = "block";
+          sp4.style.color = "red";
+          ip4.style.border = "2px solid red";
+        } else if (!rnm.test(ip4.value)) {
+          spr.style.display = "block";
+          spr.style.color = "red";
+          ip4.style.border = "2px solid red";
+        }
+      });
+    </script>
+  </body>
+</html>
